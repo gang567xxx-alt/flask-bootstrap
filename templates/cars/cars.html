@@ -9,7 +9,17 @@
        <h1>{{ title }}</h1>
        <hr>
         <div class="row">
-        <div class="col"></div>
+        <div class="col">
+          <form method="post">
+            <div class="input-group mb-3">
+              <input name="brand" type="text" class="form-control" placeholder="Search by Car brand" aria-label="Recipient’s username" aria-describedby="button-addon2">
+              <button class="btn btn-outline-secondary" type="submit" id="button-addon2">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+
         <div class="col">
             <a href="{{url_for('new_car')}}" class="btn btn-outline-info float-end">
                 <i class="bi bi-car-front"></i>
