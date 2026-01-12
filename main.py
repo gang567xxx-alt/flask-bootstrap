@@ -13,18 +13,20 @@ car = [
 def index():
     return render_template('index.html', title='Home Page')
 
-@app.route('/cars', methods=['GET', 'POST'])#ค้นหารถตามยี่ห้อ 
+@app.route('/cars', methods=['GET', 'POST'])
 def all_cars():
-
     if request.method == 'POST':
-        brand = request.form['brand'].lower()
+        brand = request.form.get('brand', '').strip().lower()
         tmp_car = []
-        for cars in car:
-            if cars['brand'].lower() == brand:
-                tmp_car.append(cars)
-        #car = tmp_car
-        return render_template('cars/cars.html', title='Search Cars Page', cars=tmp_car)
-    return render_template('cars/cars.html', title='Car List', cars=car)
+
+        for c in car:
+            if brand in c['brand'].lower():
+                tmp_car.append(c)
+
+        return render_template('cars/cars.html', cars=tmp_car)
+
+    return render_template('cars/cars.html', cars=car)
+
 
 @app.route('/cars/new', methods=['GET', 'POST'])
 def new_car():
